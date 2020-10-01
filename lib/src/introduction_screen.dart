@@ -104,6 +104,10 @@ class IntroductionScreen extends StatefulWidget {
   /// Color of done button
   final Color doneColor;
 
+  /// Whether to show image first rather than body.
+  ///
+  /// Default: true
+  final bool imageFirst;
 
   const IntroductionScreen({
     Key key,
@@ -130,7 +134,8 @@ class IntroductionScreen extends StatefulWidget {
     this.color,
     this.skipColor,
     this.nextColor,
-    this.doneColor
+    this.doneColor,
+    this.imageFirst = true,
   })  : assert(pages != null),
         assert(
           pages.length > 0,
@@ -234,7 +239,9 @@ class IntroductionScreenState extends State<IntroductionScreen> {
               physics: widget.freeze
                   ? const NeverScrollableScrollPhysics()
                   : const BouncingScrollPhysics(),
-              children: widget.pages.map((p) => IntroPage(page: p)).toList(),
+              children: widget.pages
+                  .map((p) => IntroPage(page: p, imageFirst: widget.imageFirst))
+                  .toList(),
               onPageChanged: widget.onChange,
             ),
           ),

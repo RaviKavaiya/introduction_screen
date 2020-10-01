@@ -54,6 +54,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
 
     return IntroductionScreen(
       key: introKey,
+      imageFirst: false,
       pages: [
         PageViewModel(
           title: "Fractional shares",
